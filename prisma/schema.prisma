@@ -19,3 +19,15 @@ model Student {
   dept     String?
   enrolled Boolean @default(false)
 }
+
+model Subject {
+  id       Int     @id @default(autoincrement())
+  name     String
+  code     String?
+}
+
+model Teacher {
+  id       Int     @id @default(autoincrement())
+  email    String
+  fullName String
+}

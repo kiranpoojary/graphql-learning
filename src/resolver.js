@@ -1,6 +1,5 @@
-//* node-graphql/src/resolvers.js
-
-const { prisma } = require("./database.js");
+// Import Prisma client or any other database connection
+const { prisma } = require("./database");
 
 const Student = {
   id: (parent, args, context, info) => parent.id,
@@ -8,6 +7,19 @@ const Student = {
   fullName: (parent) => parent.fullName,
   dept: (parent) => parent.dept,
   enrolled: (parent) => parent.enrolled,
+  // Add more fields and resolvers as needed
+};
+
+const Teacher = {
+  id: (parent, args, context, info) => parent.id,
+  fullName: (parent) => parent.fullName,
+  // Add more fields and resolvers as needed
+};
+
+const Subject = {
+  id: (parent, args, context, info) => parent.id,
+  name: (parent) => parent.name,
+  // Add more fields and resolvers as needed
 };
 
 const Query = {
@@ -24,6 +36,23 @@ const Query = {
       where: { id: Number(args.id) },
     });
   },
+  getAllSubjects: (parent, args) => {
+    return prisma.subject.findMany({});
+  },
+
+  getSubject: (parent, args) => {
+    return prisma.subject.findFirst({
+      where: { id: Number(args.id) },
+    });
+  },
+
+  getAllTeachers: (parent, args) => {
+    return prisma.teacher.findMany({});
+  },
+
+  getTeacher: (parent, args) => {
+    return prisma.teacher.findFirst({ where: { id: args.id } });
+  },
 };
 
 const Mutation = {
@@ -36,6 +65,7 @@ const Mutation = {
       },
     });
   },
+
   enroll: (parent, args) => {
     return prisma.student.update({
       where: { id: Number(args.id) },
@@ -44,9 +74,27 @@ const Mutation = {
       },
     });
   },
+
+  addTeacher: (parent, args) => {
+    return prisma.teacher.create({
+      data: {
+        fullName: args.fullName,
+        email: args.email,
+      },
+    });
+  },
+
+  addSubject: (parent, args) => {
+    return prisma.subject.create({
+      data: {
+        name: args.name,
+        code: args.code,
+      },
+    });
+  },
 };
 
-const resolvers = { Student, Query, Mutation };
+const resolvers = { Student, Teacher, Subject, Query, Mutation };
 
 module.exports = {
   resolvers,

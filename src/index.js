@@ -4,11 +4,11 @@ const { ApolloServer } = require("apollo-server");
 const { typeDefs } = require("./schema");
 const { resolvers } = require("./resolver");
 
-const port = process.env.PORT || 9090;
+const port = process.env.PORT || 3001;
 
 const server = new ApolloServer({ resolvers, typeDefs });
 
-//GUIDE IS HERE--------------
+// GUIDE IS HERE--------------
 // https://dev.to/nditah/how-to-build-a-graphql-api-with-node-prisma-and-postgres-ajg
 
 server.listen({ port }, () =>
