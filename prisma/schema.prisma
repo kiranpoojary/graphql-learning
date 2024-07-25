@@ -54,6 +54,8 @@ model Author {
   name              String          @default("Anonymous")
   nickName          String          @map("nick_name")
   email             String          @unique
+  createdAt         DateTime        @default(now())  
+  updatedAt         DateTime        @default(now())  
   
   // Define the bi-directional relation
   posts             Post[]          @relation("AuthorPosts")
@@ -68,6 +70,8 @@ model Post {
   edition           Int          
   title             String          
   authorId          String          @db.Uuid
+  createdAt         DateTime        @default(now())  
+  updatedAt         DateTime        @default(now())  
 
   // Define the relation field
   author            Author          @relation("AuthorPosts", fields: [authorId], references: [id])
