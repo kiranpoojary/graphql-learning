@@ -7,19 +7,16 @@ const Student = {
   fullName: (parent) => parent.fullName,
   dept: (parent) => parent.dept,
   enrolled: (parent) => parent.enrolled,
-  // Add more fields and resolvers as needed
 };
 
 const Teacher = {
   id: (parent, args, context, info) => parent.id,
   fullName: (parent) => parent.fullName,
-  // Add more fields and resolvers as needed
 };
 
 const Subject = {
   id: (parent, args, context, info) => parent.id,
   name: (parent) => parent.name,
-  // Add more fields and resolvers as needed
 };
 
 const Query = {
