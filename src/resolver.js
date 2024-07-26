@@ -21,6 +21,14 @@ const Query = {
       where: { id: args.id },
     });
   },
+
+  howToCall: async (parent, args) => {
+    try {
+      return { message: "Yes!!, It's working....." };
+    } catch (error) {
+      return { message: error.replaceAll("'") };
+    }
+  },
 };
 
 const Mutation = {

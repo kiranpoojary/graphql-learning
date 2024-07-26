@@ -21,11 +21,16 @@ const typeDefs = gql`
     updatedAt: String!
   }
 
+  type TestResponse {
+    message: String
+  }
+
   type Query {
     getAllAuthors: [Author!]!
     getAuthor(id: ID!): Author
     getAllPosts: [Post!]!
     getPost(id: ID!): Post
+    howToCall: TestResponse
   }
 
   type Mutation {
